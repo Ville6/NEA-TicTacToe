@@ -1,4 +1,6 @@
 from abc import ABC, abstractmethod
+from Game import Game
+from pprint import pprint as pp
 
 class Ui(ABC):
 
@@ -18,4 +20,21 @@ class Terminal(Ui):
         pass
 
     def run(self):
-        pass
+        game = Game()
+        board = game.board()
+        player = 1
+        print("Player 1 has x")
+        print("Player 2 has o")
+        print("Player 1 start.")
+        
+        while game.winner() == False:
+            print("  1  2  3")
+            print("1" + board[0])
+            print("2" + board[1])
+            print("3" + board[2])
+            square = input("input row and col in format 'yx'")
+            game.turn(int(square[0]), int(square[1]), player)
+            player += 1
+            if player == 3:
+                player = 1
+
