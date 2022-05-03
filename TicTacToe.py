@@ -8,6 +8,7 @@ g : play with the GUI
 t : play with the Terminal""")
     quit()
 
+
 if __name__ == "__main__":
     if argv[1] == 'g':
         pass

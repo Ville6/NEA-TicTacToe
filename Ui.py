@@ -21,20 +21,31 @@ class Terminal(Ui):
 
     def run(self):
         game = Game()
-        board = game.board()
+        board = game.board
         player = 1
         print("Player 1 has x")
         print("Player 2 has o")
-        print("Player 1 start.")
         
-        while game.winner() == False:
-            print("  1  2  3")
-            print("1" + board[0])
-            print("2" + board[1])
-            print("3" + board[2])
-            square = input("input row and col in format 'yx'")
-            game.turn(int(square[0]), int(square[1]), player)
-            player += 1
-            if player == 3:
-                player = 1
+        while game.winner() == 0:
+            print(f"player {player} to turn")
+            print("   1    2    3")
+            print("1" + str(board[0]))
+            print("2" + str(board[1]))
+            print("3" + str(board[2]))
+            square = input("input row and col in format 'xy'")
+            if game.turn(int(square[1]) - 1, int(square[0]) - 1, player):
+                player += 1
+                if player == 3:
+                    player = 1
+
+        result = game.winner()
+        if result == 3:
+            print("Draw")
+        else:
+            print(f"Player {result} won.")
+        
+        print("   1    2    3")
+        print("1" + str(board[0]))
+        print("2" + str(board[1]))
+        print("3" + str(board[2]))
 
