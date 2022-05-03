@@ -10,7 +10,7 @@ class Ui(ABC):
 
 class Gui(Ui):
     def __init__(self):
-        pass
+        self._game = Game()
 
     def run(self):
         pass
@@ -18,7 +18,6 @@ class Gui(Ui):
 class Terminal(Ui):
     def __init__(self):
         self._game = Game()
-        self._board = self._game.board
 
     def run(self):
         player = 1
@@ -28,9 +27,9 @@ class Terminal(Ui):
         while self._game.winner() == 0:
             print(f"player {player} to turn")
             print("   1    2    3")
-            print("1" + str(self._board[0]))
-            print("2" + str(self._board[1]))
-            print("3" + str(self._board[2]))
+            print("1" + str(self._game.board[0]))
+            print("2" + str(self._game.board[1]))
+            print("3" + str(self._game.board[2]))
             square = input("input row and col in format 'xy'")
             if self._game.turn(int(square[1]) - 1, int(square[0]) - 1, player):
                 player += 1
@@ -42,9 +41,9 @@ class Terminal(Ui):
             print("")
 
         print("   1    2    3")
-        print("1" + str(self._board[0]))
-        print("2" + str(self._board[1]))
-        print("3" + str(self._board[2]))
+        print("1" + str(self._game.board[0]))
+        print("2" + str(self._game.board[1]))
+        print("3" + str(self._game.board[2]))
 
         result = self._game.winner()
         if result == 3:
